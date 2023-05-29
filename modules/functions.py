@@ -23,3 +23,11 @@ def write_file(items, filename=FILEPATH):
 
 # var __name__ used to denote origin of script
 # Commonly used to separate code from other modules
+
+
+def load_ui(parent, child, list_name, var=None, singular='n'):
+    if singular == 'y':
+        parent[child].update(value=var['todos'][0])
+    else:
+        parent[child].update(values=[todo.strip('\n') for todo in list_name])
+
