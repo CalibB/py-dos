@@ -26,8 +26,16 @@ def write_file(items, filename=FILEPATH):
 
 
 def load_ui(parent, child, list_name, var=None, singular='n'):
+    """
+    Loads a list of items into the specified UI. If singular = 'y'
+    then it'll load first item from the list into the UI.
+    """
     if singular == 'y':
         parent[child].update(value=var['todos'][0])
     else:
         parent[child].update(values=[todo.strip('\n') for todo in list_name])
+
+
+def clear_ui(parent, child):
+    parent[child].update(value='')
 

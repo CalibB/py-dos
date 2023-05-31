@@ -11,9 +11,14 @@ todo_input = sg.InputText(tooltip='Enter in your todo.', key='todo')
 list_box = sg.Listbox(values=[todo.strip('\n') for todo in todos], key='todos',
                       enable_events=True, size=(45, 10))
 edit_btn = sg.Button('Edit')
+complete_btn = sg.Button('Complete')
+exit_btn = sg.Button('Exit')
 
 window = sg.Window('Py do\'s',
-                   layout=[[text], [todo_input, btn], [list_box, edit_btn]],
+                   layout=[[text],
+                           [todo_input, btn],
+                           [list_box, edit_btn, complete_btn],
+                           [exit_btn]],
                    font=("Helvetica", 20))
 
 while True:
@@ -31,6 +36,7 @@ while True:
                 todos.append(values['todo'].strip() + '\n')
                 functions.write_file(todos)
                 functions.load_ui(window, 'todos', todos)
+                functions.clear_ui(window, 'todo')
         case 'Edit':
             if not values['todos']:
                 sg.popup('Ehh bud! Select the todo you want to edit, thanks.',
@@ -45,6 +51,15 @@ while True:
 
                 functions.write_file(todos)
                 functions.load_ui(window, 'todos', todos)
+                functions.clear_ui(window, 'todo')
+        case 'Complete':
+            todo_to_be_completed = values['todos'][0] + '\n'
+            todos.remove(todo_to_be_completed)
+            functions.write_file(todos)
+            functions.load_ui(window, 'todos', todos, values)
+            functions.clear_ui(window, 'todo')
+        case 'Exit':
+            break
         case 'todos':
             functions.load_ui(window, 'todo', todos, values, 'y')
         case sg.WIN_CLOSED:
