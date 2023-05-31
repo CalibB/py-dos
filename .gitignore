@@ -7,3 +7,6 @@
 /modules/bonus_exercises_modules/
 /modules/coding_exercises_modules/
 /venv/
+/gui.spec
+/build/
+/dist/
