@@ -1,7 +1,4 @@
-FILEPATH = 'files/todos.txt'
-
-
-def read_file(filename=FILEPATH):
+def read_file(filename):
     """
     Reads content of a file and puts it into
     a list and returns that list.
@@ -12,7 +9,7 @@ def read_file(filename=FILEPATH):
     return content
 
 
-def write_file(items, filename=FILEPATH):
+def write_file(items, filename):
     """
     Writes the specified items into a file of
     your choice.
@@ -47,4 +44,3 @@ def add_newline_char(string):
 def display_popup(interface, msg, btn_msg):
     interface.popup(msg, title="Hold up!", custom_text=btn_msg, grab_anywhere=True,
                     keep_on_top=True, font=('Helvetica', 15))
-

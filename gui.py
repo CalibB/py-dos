@@ -7,9 +7,11 @@ if not os.path.exists('files/todos.txt'):
     with open('todos.txt', 'w') as file:
         pass
 
-    todos = functions.read_file(filename='todos.txt')
+    FILEPATH = 'todos.txt'
+    todos = functions.read_file(filename=FILEPATH)
 else:
-    todos = functions.read_file()
+    FILEPATH = 'files/todos.txt'
+    todos = functions.read_file(filename=FILEPATH)
 
 sg.theme("DarkPurple4")
 
@@ -47,7 +49,7 @@ while True:
                 functions.display_popup(sg, 'This todo already exists...', 'Oops!')
             else:
                 todos.append(functions.add_newline_char(values['todo'].strip()))
-                functions.write_file(todos)
+                functions.write_file(todos, FILEPATH)
                 functions.load_ui(window, 'todos', todos)
                 functions.clear_ui(window, 'todo')
         case 'Edit':
@@ -58,7 +60,7 @@ while True:
                     edited_todo = functions.add_newline_char(values['todo'])
                     todos[index] = edited_todo
 
-                    functions.write_file(todos)
+                    functions.write_file(todos, FILEPATH)
                     functions.load_ui(window, 'todos', todos)
                     functions.clear_ui(window, 'todo')
                 else:
@@ -75,7 +77,7 @@ while True:
                 else:
                     todo_to_be_completed = functions.add_newline_char(values['todo'])
                     todos.remove(todo_to_be_completed)
-                    functions.write_file(todos)
+                    functions.write_file(todos, FILEPATH)
                     functions.load_ui(window, 'todos', todos, values)
                     functions.clear_ui(window, 'todo')
             except IndexError:
