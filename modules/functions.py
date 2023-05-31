@@ -39,3 +39,12 @@ def load_ui(parent, child, list_name, var=None, singular='n'):
 def clear_ui(parent, child):
     parent[child].update(value='')
 
+
+def add_newline_char(string):
+    return string + '\n'
+
+
+def display_popup(interface, msg, btn_msg):
+    interface.popup(msg, title="Hold up!", custom_text=btn_msg, grab_anywhere=True,
+                    keep_on_top=True, font=('Helvetica', 15))
+
